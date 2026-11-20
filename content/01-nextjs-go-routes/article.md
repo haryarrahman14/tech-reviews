@@ -75,7 +75,11 @@ Which one to use?
 
 ## How it was measured
 
-50 connections for 15 seconds per route, `next start`, one laptop (Apple silicon, 10 cores), one run. So read the gaps, not the last digit. The deploy and caching limits come from the documentation; I did not test them myself. The code and the raw results are in [the repo](https://github.com/haryarrahman14/tech-reviews).
+50 connections for 15 seconds per route, `next start`, one laptop (Apple silicon, 10 cores), one run. So read the gaps, not the last digit. The deploy and caching limits come from the documentation; I did not test them myself.
+
+## Code
+
+Every route, the scripts and the raw results: [github.com/haryarrahman14/tech-reviews](https://github.com/haryarrahman14/tech-reviews), folder `01-nextjs-go-routes`.
 
 ## Sources
 
