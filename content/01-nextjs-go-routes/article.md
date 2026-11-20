@@ -11,7 +11,7 @@ Short answer: `route.go` wins on speed, `route.ts` wins on everything else. For 
 
 ## What I tried
 
-Next.js canary has a new feature: an API route can be written as `route.go`. It was merged on 3 November 2026 and is still experimental.
+Next.js canary has a new feature: an API route can be written as `route.go` ([Next.js docs](https://preview.nextjs.org/docs/app/api-reference/file-conventions/route-go)). It was merged on 3 November 2026 and is still experimental.
 
 I wrote three routes, each one twice: once as `route.ts`, once as `route.go`. Then I compared four things.
 
@@ -46,13 +46,15 @@ For heavy math the gap is 7 times. Part of that is Go using every core while Nod
 
 `route.go` today only runs with `next start`, on a machine with the same operating system as the build machine. `standalone` output, the one usually used for Docker, is not supported.
 
+Check it yourself: [Deployment](https://preview.nextjs.org/docs/app/api-reference/file-conventions/route-go#deployment) and [Build and Runtime Limitations](https://preview.nextjs.org/docs/app/api-reference/file-conventions/route-go#build-and-runtime-limitations) in the docs.
+
 ![Deploy table: route.ts supports everything, route.go only next start](img/en/3-deploy.png)
 
 ## Difference 4: features
 
-- **Caching.** `route.ts` can be cached. `route.go` always runs again.
+- **Caching.** `route.ts` can be cached. `route.go` always runs again ([Segment Config Options](https://preview.nextjs.org/docs/app/api-reference/file-conventions/route-go#segment-config-options)).
 - **First request.** `route.ts` takes about 12 ms. `route.go` takes 20 to 35 ms, because its process only starts then.
-- **Status.** `route.ts` is stable. `route.go` is experimental and can still change.
+- **Status.** `route.ts` is stable. `route.go` is experimental and can still change, and its page is only in the [preview docs](https://preview.nextjs.org/docs/app/api-reference/file-conventions/route-go) so far.
 
 ## Conclusion
 
@@ -83,5 +85,7 @@ Every route, the scripts and the raw results: [github.com/haryarrahman14/tech-re
 
 ## Sources
 
-- [`route.go` reference](https://nextjs.org/docs/app/api-reference/file-conventions/route-go), Next.js documentation
-- [vercel/next.js#100130](https://github.com/vercel/next.js/pull/100130), the pull request that added the feature
+- [`route.go` reference](https://preview.nextjs.org/docs/app/api-reference/file-conventions/route-go), Next.js preview documentation. The limits quoted here are in its [Deployment](https://preview.nextjs.org/docs/app/api-reference/file-conventions/route-go#deployment), [Build and Runtime Limitations](https://preview.nextjs.org/docs/app/api-reference/file-conventions/route-go#build-and-runtime-limitations) and [Segment Config Options](https://preview.nextjs.org/docs/app/api-reference/file-conventions/route-go#segment-config-options) sections.
+- [`route.js` reference](https://nextjs.org/docs/app/api-reference/file-conventions/route), Next.js documentation, for how a TypeScript route is cached.
+- [`output` option](https://nextjs.org/docs/app/api-reference/config/next-config-js/output), Next.js documentation, for `standalone`.
+- [vercel/next.js#100130](https://github.com/vercel/next.js/pull/100130), the pull request that added the feature.

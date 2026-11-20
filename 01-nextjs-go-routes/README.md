@@ -72,4 +72,4 @@ sh lifecycle.sh                                  # when workers start and stop
 - One machine (Apple M1 Pro, 10 cores, macOS 26.6.2), Node v20.19.5, Go 1.27.4, Next.js 16.5.0-canary.57. One run per number.
 - Node runs route handlers on one thread and Go uses every core. The "one core" column is the like-for-like comparison.
 - Only self-hosted `next start` was tested. Nothing was deployed.
-- The feature is experimental and can change. Its limits are listed in the [official reference](https://nextjs.org/docs/app/api-reference/file-conventions/route-go); it was added in [vercel/next.js#100130](https://github.com/vercel/next.js/pull/100130), merged on 2026-11-03.
+- The feature is experimental and can change. Its limits are listed in the [preview reference](https://preview.nextjs.org/docs/app/api-reference/file-conventions/route-go); it was added in [vercel/next.js#100130](https://github.com/vercel/next.js/pull/100130), merged on 2026-11-03.
