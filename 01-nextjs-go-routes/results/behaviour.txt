@@ -1,0 +1,24 @@
+## first request (cold), seconds
+hello-go 0.262013
+hello-ts 0.011696
+## behaviour
+GET hello-go -> {"message":"Hello from Go!"}
+ [200]
+GET hello-ts -> {"message":"Hello from TypeScript!"} [200]
+GET env-go -> {"pid":99706,"gomaxprocs":10,"cpus":10,"GOMAXPROCS_env":""} [200]
+GET items-go/42?name=cat -> {"id":"42","name":"cat"}
+ [200]
+GET items-ts/42?name=cat -> {"id":"42","name":"cat"} [200]
+GET prime-go?n=100000 -> {"n":100000,"primes":9592} [200]
+GET prime-ts?n=100000 -> {"n":100000,"primes":9592} [200]
+POST items-go -> {"id":"7","name":"cat"}
+ [201]
+POST items-go bad JSON -> invalid JSON
+ [400]
+PUT items-go -> [405]
+OPTIONS items-go -> HTTP/1.1 204 No Content allow: GET, HEAD, OPTIONS, POST 
+POST items-ts -> {"id":"7","name":"cat"} [201]
+POST items-ts bad JSON -> invalid JSON [400]
+PUT items-ts -> [405]
+OPTIONS items-ts -> HTTP/1.1 204 No Content allow: GET, HEAD, OPTIONS, POST 
+stream-go, time to each chunk: Chunk 1@57.357 Chunk 2@57.565 Chunk 3@57.763 

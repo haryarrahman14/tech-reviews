@@ -1,0 +1,37 @@
+
+> nextjs-go-routes@ build app
+> next build
+
+▲ Next.js 16.5.0-canary.57 (Turbopack)
+✓ Running next.config.ts took 99ms
+- Experiments (use with caution):
+  ✓ goRoutes
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.6s
+  Running TypeScript ...
+  Finished TypeScript in 978ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/5) ...
+  Generating static pages using 9 workers (1/5) 
+  Generating static pages using 9 workers (2/5) 
+  Generating static pages using 9 workers (3/5) 
+✓ Generating static pages using 9 workers (5/5) in 170ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/env-go
+├ ƒ /api/hello-go
+├ ƒ /api/hello-ts
+├ ƒ /api/items-go/[id]
+├ ƒ /api/items-ts/[id]
+├ ƒ /api/prime-go
+├ ƒ /api/prime-ts
+└ ƒ /api/stream-go
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

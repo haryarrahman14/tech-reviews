@@ -1,0 +1,14 @@
+## processes after load (RSS in MB)
+212 MB   next-server (v16.5.0-canary.57)
+9 MB   app/.next/server/app/api/hello-go/route-6b490396ef78806402a749d174a5f5ca
+8 MB   app/.next/server/app/api/env-go/route-440215dc95e483ed6eb91dac1de69d25
+12 MB   app/.next/server/app/api/items-go/[id]/route-b5fa3cb2dd1f4845bfb32e1192a5ded9
+19 MB   app/.next/server/app/api/prime-go/route-10512150e3228a4ba6c52fcf451d9285
+7 MB   app/.next/server/app/api/stream-go/route-5998a49379a9c753e1f37c277e9c293f
+## compiled Go files
+7.8M app/.next/server/app/api/stream-go/route-5998a49379a9c753e1f37c277e9c293f
+7.8M app/.next/server/app/api/env-go/route-440215dc95e483ed6eb91dac1de69d25
+7.8M app/.next/server/app/api/prime-go/route-10512150e3228a4ba6c52fcf451d9285
+8.8M app/.next/server/app/api/hello-go/route-6b490396ef78806402a749d174a5f5ca
+8.8M app/.next/server/app/api/items-go/[id]/route-b5fa3cb2dd1f4845bfb32e1192a5ded9
+1.4M app/.next/server/chunks/ssr/[root-of-the-server]__0pj-i725wp9cg._.js.map
