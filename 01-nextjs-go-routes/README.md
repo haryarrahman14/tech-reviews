@@ -18,11 +18,11 @@ What it costs:
 
 | | |
 |---|---|
-| First request to a Go route | 20 to 35 ms (the worker starts then); 0.6 to 0.9 s the first time macOS runs a new binary. TypeScript: about 12 ms |
+| First request after the server starts | Go: 0.3 to 0.9 s on the first start after a build, 13 to 35 ms on a later restart (eight starts across my runs; `results/` holds five of them). TypeScript: 11 to 27 ms. The Go program only starts when its first request arrives |
 | Processes | One extra per Go route folder, started on its first request: 7 to 19 MB of memory and a 7.8 to 8.8 MB executable each. Node still runs in front (212 MB) |
 | Build | Needs Go on the build machine. `output: 'standalone'`, static export, Webpack and cross-compiling are not supported |
 
-One run each on a laptop, so read the gaps, not the last digit. Raw output: [`results/`](results/).
+One run each on a laptop, so read the gaps, not the last digit: across five runs the `prime` gap on all cores moved between 7× and 13×. Raw output: [`results/`](results/). Every file there is written by `bench.sh` or `lifecycle.sh`.
 
 ## How it works
 
@@ -58,13 +58,13 @@ No Next.js import: the handler is plain `net/http`. Node still takes every reque
 
 ## Run it
 
-Needs Go 1.24+, pnpm and [`oha`](https://github.com/hatoo/oha).
+No `go.mod` is needed: the routes only use Go's standard library. Needs Go 1.24+, pnpm and [`oha`](https://github.com/hatoo/oha).
 
 ```sh
 cd app && pnpm install && cd ..
 sh bench.sh                                      # build, check every route, load each pair
 GOMAXPROCS=1 OUT=results/one-core sh bench.sh    # the same with Go held to one core
-sh lifecycle.sh                                  # when workers start and stop
+sh lifecycle.sh                                  # when workers start and stop, three server starts
 ```
 
 ## Limits of this review

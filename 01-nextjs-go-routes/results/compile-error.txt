@@ -16,10 +16,4 @@ Error: Unable to compile route.go
 app/app/api/hello-go/./route.go:12:14: syntax error: unexpected {, expected )
 
 
-    at printBuildErrors (app/node_modules/.pnpm/next@16.5.0-canary.57_@types+node@20.19.43_react-dom@19.3.1_react@19.3.1__react@19.3.1/node_modules/next/dist/build/print-build-errors.js:134:15)
-    at turbopackBuild (app/node_modules/.pnpm/next@16.5.0-canary.57_@types+node@20.19.43_react-dom@19.3.1_react@19.3.1__react@19.3.1/node_modules/next/dist/build/turbopack-build/impl.js:161:69)
-    at async Span.traceAsyncFn (app/node_modules/.pnpm/next@16.5.0-canary.57_@types+node@20.19.43_react-dom@19.3.1_react@19.3.1__react@19.3.1/node_modules/next/dist/trace/trace.js:168:20)
-    at async app/node_modules/.pnpm/next@16.5.0-canary.57_@types+node@20.19.43_react-dom@19.3.1_react@19.3.1__react@19.3.1/node_modules/next/dist/build/index.js:967:99
-    at async Span.traceAsyncFn (app/node_modules/.pnpm/next@16.5.0-canary.57_@types+node@20.19.43_react-dom@19.3.1_react@19.3.1__react@19.3.1/node_modules/next/dist/trace/trace.js:168:20)
-    at async build (app/node_modules/.pnpm/next@16.5.0-canary.57_@types+node@20.19.43_react-dom@19.3.1_react@19.3.1__react@19.3.1/node_modules/next/dist/build/index.js:485:16)
  ELIFECYCLE  Command failed with exit code 1.

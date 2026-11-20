@@ -1,6 +1,6 @@
 #!/bin/sh
 # Build, start the app, check every route, then load each Go/TypeScript pair with oha.
-#   sh bench.sh        needs: Go 1.24+, pnpm, oha. Results land in results/.
+#   sh bench.sh        needs: Go 1.24+, pnpm, oha. Everything in results/ is written by this script and lifecycle.sh.
 #   GOMAXPROCS=1 OUT=results/one-core sh bench.sh     the same with Go held to one core, like Node's one thread
 set -e
 cd "$(dirname "$0")"
@@ -35,11 +35,18 @@ for pair in "hello-go" "hello-ts" "items-go/42?name=cat" "items-ts/42?name=cat" 
 done
 
 { echo "## processes after load (RSS in MB)"; ps -axo rss,command | grep -E "next-server \(v16.5|$PWD/app/.next/server" | grep -v grep | awk '{printf "%.0f MB  ", $1/1024; $1=""; print}' | sed "s#$PWD/##"
-  echo "## compiled Go files"; find app/.next/server -type f -size +1M -exec ls -lh {} \; | awk '{print $5, $9}'; } > $OUT/processes.txt
-OUT=$OUT python3 - <<'P'
+  echo "## compiled Go files"; find app/.next/server/app -type f -name 'route-*' ! -name '*.*' -exec ls -lh {} \; | awk '{print $5, $9}'; } > $OUT/processes.txt
+OUT=$OUT python3 - <<'P' | tee $OUT/summary.txt
 import json,glob,os
 print(f"{'route':10} {'req/s':>9} {'p50 ms':>8} {'p99 ms':>8} {'ok %':>6}")
 for f in sorted(glob.glob(os.environ.get('OUT','results')+'/oha-*.json')):
     d=json.load(open(f)); s=d['summary']; p=d['latencyPercentiles']
     print(f"{os.path.basename(f)[4:-5]:10} {s['requestsPerSec']:9.0f} {p['p50']*1000:8.2f} {p['p99']*1000:8.2f} {s['successRate']*100:6.1f}")
 P
+
+# What a Go syntax error looks like at build time: break one route, build, put it back.
+cp app/app/api/hello-go/route.go $OUT/route.go.keep
+echo 'func broken( {' >> app/app/api/hello-go/route.go
+(cd app && pnpm build 2>&1 | grep -v "^    at " | sed "s#$PWD/##g" > ../$OUT/compile-error.txt) || true
+mv $OUT/route.go.keep app/app/api/hello-go/route.go
+rm -f $OUT/server.log

@@ -1,11 +1,13 @@
 #!/bin/sh
 # When do Go workers start, what do they inherit, and do they stop with the server?
-#   sh lifecycle.sh      run after `pnpm build` in app/. Writes results/lifecycle.txt
+#   sh lifecycle.sh      builds, then starts the server three times. Writes results/lifecycle.txt
 cd "$(dirname "$0")/app"
 PORT=3210; U=http://127.0.0.1:$PORT
 workers() { pgrep -f "$PWD/.next/server/app/api" | wc -l | tr -d ' '; }
 server() { lsof -ti tcp:$PORT -sTCP:LISTEN; }
 t() { printf "$1 "; curl -s -o /dev/null -w '%{time_total}s\n' "$U/api/$2"; }
+pnpm build > /dev/null 2>&1 || { echo "build failed"; exit 1; }   # its own build, so the first start below is the first after a build
+{
 for SIG in TERM INT KILL; do
   echo "=== server stopped with SIG$SIG"
   GOMAXPROCS=1 node_modules/.bin/next start -p $PORT > /dev/null 2>&1 &
@@ -19,3 +21,5 @@ for SIG in TERM INT KILL; do
   echo "3s after SIG$SIG: server listening=$(server | wc -l | tr -d ' ') workers alive=$(workers)"
   pkill -f "$PWD/.next/server/app/api"; sleep 1
 done
+} 2>&1 | grep -v "Killed: 9" > ../results/lifecycle.txt
+cat ../results/lifecycle.txt

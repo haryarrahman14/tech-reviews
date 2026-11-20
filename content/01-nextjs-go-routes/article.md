@@ -36,7 +36,7 @@ So each Go route is one more program running next to Node. After I called three 
 
 `route.go` answered about 3 times more requests for a small JSON: 9,927 per second against 3,034.
 
-For heavy math the gap is 7 times. Part of that is Go using every core while Node runs on one thread. Even on one core, Go is still 2 times faster.
+For heavy math the gap is at least 7 times (7 to 13 across five runs). Part of that is Go using every core while Node runs on one thread. Even on one core, Go is still 2 times faster.
 
 ![Requests per second for three routes: route.go, Go on one core, and route.ts](img/en/2-speed.png)
 
@@ -53,7 +53,7 @@ Check it yourself: [Deployment](https://preview.nextjs.org/docs/app/api-referenc
 ## Difference 4: features
 
 - **Caching.** `route.ts` can be cached. `route.go` always runs again ([Segment Config Options](https://preview.nextjs.org/docs/app/api-reference/file-conventions/route-go#segment-config-options)).
-- **First request.** `route.ts` takes about 12 ms. `route.go` takes 20 to 35 ms, because its process only starts then.
+- **First request.** `route.ts` takes about 12 ms. `route.go` took 0.3 to 0.9 seconds on the first start after a build, because its program only starts when the first request arrives. On later restarts it took 13 to 35 ms.
 - **Status.** `route.ts` is stable. `route.go` is experimental and can still change, and its page is only in the [preview docs](https://preview.nextjs.org/docs/app/api-reference/file-conventions/route-go) so far.
 
 ## Conclusion
@@ -62,7 +62,7 @@ Check it yourself: [Deployment](https://preview.nextjs.org/docs/app/api-referenc
 |---|---|---|
 | Small JSON | 3,034 requests/s | **9,927 requests/s** |
 | Heavy math | 178 requests/s | **1,332 requests/s** |
-| First request | **12 ms** | 20–35 ms |
+| First request after a build | **12 ms** | 0.3–0.9 s |
 | Your code runs in | Node | a Go program, one per route |
 | Deploy | **every way** | `next start` only |
 | Can be cached | **yes** | no |

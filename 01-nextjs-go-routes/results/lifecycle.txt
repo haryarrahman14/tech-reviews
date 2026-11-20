@@ -1,31 +1,30 @@
 === server stopped with SIGTERM
 workers before any Go request: 0
-hello-go 1st 0.929975s
-hello-go 2nd 0.002264s
-hello-ts 1st 0.011389s
-hello-ts 2nd 0.003225s
+hello-go 1st 0.632659s
+hello-go 2nd 0.002112s
+hello-ts 1st 0.011388s
+hello-ts 2nd 0.003169s
 workers after one Go route was hit: 1
-env-go: {"pid":98482,"gomaxprocs":1,"cpus":10,"GOMAXPROCS_env":"1"}
-env-go again: {"pid":98482,"gomaxprocs":1,"cpus":10,"GOMAXPROCS_env":"1"}
+env-go: {"pid":83628,"gomaxprocs":1,"cpus":10,"GOMAXPROCS_env":"1"}
+env-go again: {"pid":83628,"gomaxprocs":1,"cpus":10,"GOMAXPROCS_env":"1"}
 3s after SIGTERM: server listening=0 workers alive=0
 === server stopped with SIGINT
 workers before any Go request: 0
-hello-go 1st 0.035293s
-hello-go 2nd 0.002472s
-hello-ts 1st 0.027201s
-hello-ts 2nd 0.014564s
+hello-go 1st 0.014405s
+hello-go 2nd 0.002005s
+hello-ts 1st 0.011905s
+hello-ts 2nd 0.003179s
 workers after one Go route was hit: 1
-env-go: {"pid":98555,"gomaxprocs":1,"cpus":10,"GOMAXPROCS_env":"1"}
-env-go again: {"pid":98555,"gomaxprocs":1,"cpus":10,"GOMAXPROCS_env":"1"}
+env-go: {"pid":83691,"gomaxprocs":1,"cpus":10,"GOMAXPROCS_env":"1"}
+env-go again: {"pid":83691,"gomaxprocs":1,"cpus":10,"GOMAXPROCS_env":"1"}
 3s after SIGINT: server listening=0 workers alive=0
 === server stopped with SIGKILL
 workers before any Go request: 0
-hello-go 1st 0.023273s
-hello-go 2nd 0.008469s
-hello-ts 1st 0.012324s
-hello-ts 2nd 0.003668s
+hello-go 1st 0.012778s
+hello-go 2nd 0.002020s
+hello-ts 1st 0.011281s
+hello-ts 2nd 0.003363s
 workers after one Go route was hit: 1
-env-go: {"pid":98683,"gomaxprocs":1,"cpus":10,"GOMAXPROCS_env":"1"}
-env-go again: {"pid":98683,"gomaxprocs":1,"cpus":10,"GOMAXPROCS_env":"1"}
-lifecycle.sh: line 9: 98642 Killed: 9               GOMAXPROCS=1 node_modules/.bin/next start -p $PORT > /dev/null 2>&1
+env-go: {"pid":83754,"gomaxprocs":1,"cpus":10,"GOMAXPROCS_env":"1"}
+env-go again: {"pid":83754,"gomaxprocs":1,"cpus":10,"GOMAXPROCS_env":"1"}
 3s after SIGKILL: server listening=0 workers alive=0
